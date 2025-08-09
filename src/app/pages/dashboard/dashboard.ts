@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.css'
 })
 export class Dashboard {
-username = 'User'; // You can later pass real name after login
+  username = 'User'; // You can later pass real name after login
+
+  constructor(private router: Router) {}
 
   logout() {
-    // For now, just navigate back to login
-    window.location.href = '/login';
+    localStorage.removeItem('loggedIn');
+    this.router.navigate(['/login']);
   }
 }

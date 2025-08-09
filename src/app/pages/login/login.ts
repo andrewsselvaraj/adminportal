@@ -6,19 +6,20 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  standalone: false,
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class Login {
-username = '';
+  username = '';
   password = '';
 
-  constructor(private router: Router,private forms: FormsModule,private common: CommonModule) {}
+  constructor(private router: Router) {}
 
   login() {
     if (this.username === 'admin' && this.password === 'admin') {
+      localStorage.setItem('loggedIn', 'true');
       this.router.navigate(['/dashboard']);
     } else {
       alert('Invalid credentials. Try admin/admin.');
