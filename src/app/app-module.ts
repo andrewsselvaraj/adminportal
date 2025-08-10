@@ -8,14 +8,14 @@ import { Dashboard } from './pages/dashboard/dashboard';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    Login,
     Dashboard
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AppComponent,
+    Login
   ],
   providers: [],
   bootstrap: [AppComponent]
