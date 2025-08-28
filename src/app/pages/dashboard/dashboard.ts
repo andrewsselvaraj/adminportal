@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class Dashboard {
   username = 'User'; // You can later pass real name after login
 
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
   logout() {
     localStorage.removeItem('loggedIn');

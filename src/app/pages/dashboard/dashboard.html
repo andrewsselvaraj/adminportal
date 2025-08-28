@@ -2,5 +2,14 @@
   <h1>Welcome to the Dashboard, {{ username }} 🎉</h1>
   <p>You have successfully logged in!</p>
 
-  <button (click)="logout()">Logout</button>
+  <div class="navigation-menu">
+    <button class="nav-btn" (click)="router.navigate(['/upload'])">
+      📁 File Upload
+    </button>
+    <button class="nav-btn" (click)="router.navigate(['/dashboard'])">
+      🏠 Dashboard
+    </button>
+  </div>
+
+  <button class="logout-btn" (click)="logout()">Logout</button>
 </div>
