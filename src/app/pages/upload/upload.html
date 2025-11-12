@@ -1,0 +1,76 @@
+<div class="upload-container">
+  <div class="header">
+    <h1>File Upload 📁</h1>
+    <p>Upload your files here</p>
+  </div>
+
+  <div class="upload-section">
+    <div class="file-input-container">
+      <input 
+        type="file" 
+        id="fileInput" 
+        (change)="onFileSelected($event)" 
+        accept="*/*"
+        class="file-input"
+      >
+      <label for="fileInput" class="file-input-label">
+        <span class="upload-icon">📁</span>
+        <span class="upload-text">
+          {{ selectedFile ? selectedFile.name : 'Choose a file or drag it here' }}
+        </span>
+      </label>
+    </div>
+
+    <div class="file-info" *ngIf="selectedFile">
+      <div class="file-details">
+        <span class="file-name">{{ selectedFile.name }}</span>
+        <span class="file-size">{{ (selectedFile.size / 1024).toFixed(2) }} KB</span>
+      </div>
+    </div>
+
+    <button 
+      class="upload-btn" 
+      (click)="uploadFile()" 
+      [disabled]="!selectedFile || isUploading"
+      [class.uploading]="isUploading"
+    >
+      <span *ngIf="!isUploading">Upload File</span>
+      <span *ngIf="isUploading">Uploading...</span>
+    </button>
+
+    <div class="progress-container" *ngIf="isUploading">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="uploadProgress"></div>
+      </div>
+      <span class="progress-text">{{ uploadProgress }}%</span>
+    </div>
+
+    <!-- Upload Status Messages -->
+    <div class="status-container" *ngIf="uploadStatus !== 'idle'">
+      <div class="status-message" [class]="'status-' + uploadStatus">
+        <span class="status-icon">
+          <span *ngIf="uploadStatus === 'uploading'">⏳</span>
+          <span *ngIf="uploadStatus === 'success'">✅</span>
+          <span *ngIf="uploadStatus === 'error'">❌</span>
+        </span>
+        <span class="status-text">{{ uploadMessage }}</span>
+      </div>
+      
+      <!-- Show S3 URL on success -->
+      <div class="s3-url" *ngIf="uploadStatus === 'success' && uploadedFileUrl">
+        <label>S3 URL:</label>
+        <a [href]="uploadedFileUrl" target="_blank" class="s3-link">
+          {{ uploadedFileUrl }}
+        </a>
+        <button class="copy-btn" (click)="copyToClipboard(uploadedFileUrl)">
+          📋 Copy
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="navigation">
+    <button class="nav-btn" (click)="router.navigate(['/dashboard'])">Dashboard</button>
+    <button class="nav-btn logout-btn" (click)="logout()">Logout</button>
+  </div>
+</div>
