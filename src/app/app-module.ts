@@ -9,13 +9,15 @@ import { Dashboard } from './pages/dashboard/dashboard';
 import { Temperature } from './temperature/temperature';
 import { Upload } from './pages/upload/upload';
 import { Stream } from './pages/stream/stream';
+import { Timeflux } from './timeflux/timeflux';
 
 @NgModule({
   declarations: [
     Dashboard,
     Temperature,
     Upload,
-    Stream
+    Stream,
+    Timeflux
   ],
   imports: [
     BrowserModule,
