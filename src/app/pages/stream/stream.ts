@@ -34,7 +34,7 @@ export class Stream implements OnInit, OnDestroy {
 
     // Use XMLHttpRequest to handle streaming
     this.xhr = new XMLHttpRequest();
-    this.xhr.open('GET', 'http://localhost:8080/stream/time', true);
+    this.xhr.open('GET', 'http://63.142.240.31:8000/stream/time', true);
     this.xhr.withCredentials = false; // Allow CORS
 
     let lastIndex = 0;
