@@ -14,7 +14,9 @@ export const routes: Routes = [
   // common misspelling redirect -> ensures /temparature goes to /temperature
   { path: 'temparature', redirectTo: 'temperature' },
   { path: 'upload', component: Upload },
-  { path: 'stream', component: Stream }
+  { path: 'stream', component: Stream },
+   { path: 'timeflux', component: Stream }
+  
 ];
 
 @NgModule({
